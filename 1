@@ -1,0 +1,104 @@
+create database anil;
+Query OK, 1 row affected (0.01 sec)
+mysql> use anil;
+Database changed
+mysql> create table student(regno int,name char(20),age int,branch char(222));
+Query OK, 0 rows affected (0.04 sec)
+mysql> desc student;
++--------+-----------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++--------+-----------+------+-----+---------+-------+
+| regno | int | YES | | NULL | |
+| name | char(20) | YES | | NULL | |
+| age | int | YES | | NULL | |
+| branch | char(222) | YES | | NULL | |
++--------+-----------+------+-----+---------+-------+
+4 rows in set (0.04 sec)
+mysql> insert into student values(192225054,"Devesh",18,"cse");
+insert into student values(192225048,"Rumaan",50,"Ai&Ml");
+Query OK, 1 row affected (0.01 sec)
+insert into student values(192225075,"Mahendra",18,"ece");
+Query OK, 1 row affected (0.01 sec)
+mysql> select * from student;
++-----------+----------+------+--------+
+| regno | name | age | branch |
++-----------+----------+------+--------+
+| 192225054 | Devesh | 18 | cse |
+| 192225048 | Rumaan | 50 | Ai&Ml |
+| 192225075 | Mahendra | 18 | ece |
++-----------+----------+------+--------+
+3 rows in set (0.00 sec)
+mysql> alter table student add address varchar(20);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| regno | int | YES | | NULL | |
+| name | char(20) | YES | | NULL | |
+| age | int | YES | | NULL | |
+| branch | char(222) | YES | | NULL | |
+| address | varchar(20) | YES | | NULL | |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+update student set address="tirupati" where age=50;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1 Changed: 1 Warnings: 0
+mysql> update student set address="tirupati" where age=18;
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2 Changed: 2 Warnings: 0
+mysql> update student set address="kadapa" where age=18;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2 Changed: 2 Warnings: 0
+mysql> update student set address="guntur" where age=50;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1 Changed: 1 Warnings: 0
+mysql> select * from student;
++-----------+----------+------+--------+---------+
+| regno | name | age | branch | address |
++-----------+----------+------+--------+---------+
+| 192225054 | Devesh | 18 | cse | Kadapa |
+| 192225048 | Rumaan | 50 | Ai&Ml | guntur |
+| 192225075 | Mahendra | 18 | ece | kadapa |
++-----------+----------+------+--------+---------+
+3 rows in set (0.00 sec)
+mysql> update student set address="tirupati" where age=18;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2 Changed: 2 Warnings: 0
+mysql> update student set address="kadapa" where regno=192225075;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1 Changed: 1 Warnings: 0
+select * from student;
++-----------+----------+------+--------+----------+
+| regno | name | age | branch | address |
++-----------+----------+------+--------+----------+
+| 192225054 | Devesh | 18 | cse | tirupati |
+| 192225048 | Rumaan | 50 | Ai&Ml | guntur |
+| 192225075 | Mahendra | 18 | ece | kadapa |
++-----------+----------+------+--------+----------+
+3 rows in set (0.00 sec)
+delete from student where address="kadapa";
+Query OK, 1 row affected (0.01 sec)
+mysql> select * from student;
++-----------+--------+------+--------+----------+
+| regno | name | age | branch | address |
++-----------+--------+------+--------+----------+
+| 192225054 | Devesh | 18 | cse | tirupati |
+| 192225048 | Rumaan | 50 | Ai&Ml | guntur |
++-----------+--------+------+--------+----------+
+2 rows in set (0.00 sec)
+mysql> select name,branch from student;
++--------+--------+
+| name | branch |
++--------+--------+
+| Devesh | cse |
+| Rumaan | Ai&Ml |
++--------+--------+
+2 rows in set (0.00 sec)
+drop table student;
+Query OK, 0 rows affected (0.02 sec)
+mysql> select * from student;
+ERROR 1146 (42S02): Table 'anil.student' doesn't exist
+mysql> desc student;
+ERROR 1146 (42S02): Table 'anil.student' doesn't exist
